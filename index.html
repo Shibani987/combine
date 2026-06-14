@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weekend Challenge - 3 in 1 Webpage</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="dashboard">
+      <section class="hero">
+        <p class="eyebrow">Day 7 Weekend Challenge</p>
+        <h1>3 Projects, 1 Webpage</h1>
+        <p>Digital clock, tip calculator, and BMI calculator combined into one useful mini dashboard.</p>
+      </section>
+
+      <section class="tool-card clock-card" aria-label="Digital clock">
+        <div class="card-header">
+          <div>
+            <p class="eyebrow">Project 1</p>
+            <h2>Digital Clock</h2>
+          </div>
+          <span id="dateLabel" class="status-pill"></span>
+        </div>
+        <canvas id="clockCanvas" width="460" height="460"></canvas>
+      </section>
+
+      <section class="tool-card" aria-label="Tip calculator">
+        <div class="card-header">
+          <div>
+            <p class="eyebrow">Project 2</p>
+            <h2>Tip Calculator</h2>
+          </div>
+          <span class="status-pill">Bill split</span>
+        </div>
+
+        <form id="tipForm" class="form-grid" novalidate>
+          <label>
+            <span>Bill amount</span>
+            <div class="input-row">
+              <strong>$</strong>
+              <input id="billAmount" type="number" min="0" step="0.01" placeholder="85.50" inputmode="decimal" />
+            </div>
+          </label>
+
+          <div class="form-block">
+            <div class="label-row">
+              <span>Tip percentage</span>
+              <strong id="tipPercentLabel">15%</strong>
+            </div>
+            <div class="tip-options" role="group" aria-label="Tip percentage">
+              <button class="tip-button" type="button" data-tip="10">10%</button>
+              <button class="tip-button active" type="button" data-tip="15">15%</button>
+              <button class="tip-button" type="button" data-tip="18">18%</button>
+              <button class="tip-button" type="button" data-tip="20">20%</button>
+              <button class="tip-button" type="button" data-tip="25">25%</button>
+            </div>
+            <label class="range-label">
+              <span>Custom tip</span>
+              <input id="customTip" type="range" min="0" max="50" value="15" />
+            </label>
+          </div>
+
+          <label>
+            <span>People</span>
+            <div class="stepper">
+              <button id="decreasePeople" type="button" aria-label="Decrease people">-</button>
+              <input id="peopleCount" type="number" min="1" max="99" step="1" value="1" inputmode="numeric" />
+              <button id="increasePeople" type="button" aria-label="Increase people">+</button>
+            </div>
+          </label>
+
+          <p class="error" id="tipError" role="alert"></p>
+
+          <div class="actions">
+            <button class="primary-button" type="submit">Calculate</button>
+            <button class="secondary-button" id="tipResetBtn" type="button">Reset</button>
+          </div>
+        </form>
+
+        <div class="result-grid">
+          <div class="big-result">
+            <span>Each person pays</span>
+            <strong id="perPerson">$0.00</strong>
+          </div>
+          <div class="mini-result">
+            <span>Bill</span>
+            <strong id="billOutput">$0.00</strong>
+          </div>
+          <div class="mini-result">
+            <span>Tip</span>
+            <strong id="tipOutput">$0.00</strong>
+          </div>
+          <div class="mini-result">
+            <span>Total</span>
+            <strong id="totalOutput">$0.00</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="tool-card" aria-label="BMI calculator">
+        <div class="card-header">
+          <div>
+            <p class="eyebrow">Project 3</p>
+            <h2>BMI Calculator</h2>
+          </div>
+          <span class="status-pill" id="bmiStatusText">Waiting</span>
+        </div>
+
+        <div class="unit-toggle" role="group" aria-label="Measurement unit">
+          <button class="unit-button active" id="metricBtn" type="button" aria-pressed="true">Metric</button>
+          <button class="unit-button" id="imperialBtn" type="button" aria-pressed="false">Imperial</button>
+        </div>
+
+        <form id="bmiForm" class="form-grid" novalidate>
+          <div class="field-grid" id="metricFields">
+            <label>
+              <span>Height</span>
+              <div class="input-row">
+                <input id="heightCm" type="number" min="50" max="260" step="0.1" placeholder="175" inputmode="decimal" />
+                <strong>cm</strong>
+              </div>
+            </label>
+            <label>
+              <span>Weight</span>
+              <div class="input-row">
+                <input id="weightKg" type="number" min="10" max="350" step="0.1" placeholder="70" inputmode="decimal" />
+                <strong>kg</strong>
+              </div>
+            </label>
+          </div>
+
+          <div class="field-grid hidden" id="imperialFields">
+            <label>
+              <span>Height</span>
+              <div class="split-row">
+                <div class="input-row">
+                  <input id="heightFt" type="number" min="1" max="8" step="1" placeholder="5" inputmode="numeric" />
+                  <strong>ft</strong>
+                </div>
+                <div class="input-row">
+                  <input id="heightIn" type="number" min="0" max="11" step="0.1" placeholder="9" inputmode="decimal" />
+                  <strong>in</strong>
+                </div>
+              </div>
+            </label>
+            <label>
+              <span>Weight</span>
+              <div class="input-row">
+                <input id="weightLb" type="number" min="22" max="770" step="0.1" placeholder="154" inputmode="decimal" />
+                <strong>lb</strong>
+              </div>
+            </label>
+          </div>
+
+          <p class="error" id="bmiError" role="alert"></p>
+
+          <div class="actions">
+            <button class="primary-button" type="submit">Calculate BMI</button>
+            <button class="secondary-button" id="bmiResetBtn" type="button">Reset</button>
+          </div>
+        </form>
+
+        <div class="bmi-panel">
+          <div class="meter">
+            <div class="meter-marker" id="meterMarker"></div>
+          </div>
+          <div class="scale">
+            <span>18.5</span>
+            <span>25</span>
+            <span>30</span>
+          </div>
+
+          <div class="bmi-result">
+            <div class="bmi-value" id="bmiValue">--</div>
+            <h3 id="bmiCategory">Enter your details</h3>
+            <p id="bmiMessage">Your BMI result and category will appear here.</p>
+          </div>
+
+          <div class="mini-result">
+            <span>Healthy range</span>
+            <strong id="healthyRange">--</strong>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
